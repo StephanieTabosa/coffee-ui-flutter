@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 
 class CoffeeTile extends StatelessWidget {
-  final String img;
+  final String coffeeImg;
+  final String coffeeName;
+  final String coffeeDescription;
+  final String coffeePrice;
 
-  const CoffeeTile(this.img, {Key? key}) : super(key: key);
+  const CoffeeTile(
+      {required this.coffeeImg,
+      required this.coffeeName,
+      required this.coffeePrice,
+      required this.coffeeDescription,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24.0, bottom: 24),
+      padding: const EdgeInsets.only(left: 24.0),
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         width: 200,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Colors.black54,
+          color: Colors.black45,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +31,7 @@ class CoffeeTile extends StatelessWidget {
             //coffee image
             ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(img)),
+                child: Image.asset(coffeeImg)),
 
             //coffee name
             Padding(
@@ -31,32 +40,36 @@ class CoffeeTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Latte',
-                    style: TextStyle(fontSize: 16),
+                    coffeeName,
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Text(
-                    'Com leite maltado',
+                    coffeeDescription,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(color: Colors.grey[700]),
                   ),
-                  // price
+                  // coffee price
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('R\$ 16,00'),
+                        Text(coffeePrice),
                         Container(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
                                 color: Colors.orange,
                                 borderRadius: BorderRadius.circular(6)),
-                            child: Icon(Icons.add))
+                            child: const Icon(Icons.add))
                       ],
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
                 ],
               ),
             ),
